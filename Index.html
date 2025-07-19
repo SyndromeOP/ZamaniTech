@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZamaniTech - Graphic Design & Web Development</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(102, 126, 234, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #8360c3 0%, #2ebf91 100%);
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-20px, -20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideInDown 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: slideInUp 1s ease-out 0.6s both;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
+        }
+
+        @keyframes slideInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #8360c3;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(45deg, #8360c3, #2ebf91);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: #8360c3;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .mission, .vision {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);
+        }
+
+        .services {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(163, 77, 217, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(163, 77, 217, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #8360c3;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio {
+            background: white;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .portfolio-img {
+            height: 200px;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .reviews {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(252, 182, 159, 0.3);
+            position: relative;
+        }
+
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: #8360c3;
+            opacity: 0.3;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8360c3, #2ebf91);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .stars {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #8360c3 0%, #2ebf91 100%);
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: #ffd700;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content,
+            .contact-content,
+            .mission-vision {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .services-grid,
+            .portfolio-grid,
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #8360c3, #2ebf91);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">ZamaniTech</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Welcome to ZamaniTech</h1>
+                    <p>Transforming Ideas into Visual Excellence with Cutting-Edge Design & Development</p>
+                    <a href="#contact" class="cta-button">Get Started Today</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section about">
+            <div class="container">
+                <h2 class="section-title">About ZamaniTech</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Your Digital Creative Partner</h3>
+                        <p>ZamaniTech is a premier creative agency founded by Bashir Musa Naibi, combining 4+ years of graphic design expertise with cutting-edge web development and software solutions. We specialize in creating compelling visual identities that drive business objectives and exceed client expectations.</p>
+                        <p>Our team is dedicated to delivering high-impact design solutions, from stunning graphics to fully functional web applications, all while maintaining the highest standards of quality and innovation.</p>
+                    </div>
+                    <div class="mission-vision">
+                        <div class="mission">
+                            <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                            <p>To empower businesses through innovative design and technology solutions that enhance brand identity, drive engagement, and deliver measurable results in the digital landscape.</p>
+                        </div>
+                        <div class="vision">
+                            <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                            <p>To become the leading creative technology partner in Nigeria and beyond, setting new standards for design excellence and digital innovation while fostering long-term client relationships.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section services">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>Graphic Design</h3>
+                        <p>Expert graphic design services using Adobe Creative Suite and CorelDraw. From logos to marketing materials, we create compelling visuals that elevate your brand.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Web Development</h3>
+                        <p>Modern, responsive websites built with the latest technologies. We create user-friendly, fast-loading websites that convert visitors into customers.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Software Development</h3>
+                        <p>Custom software solutions tailored to your business needs. From desktop applications to mobile apps, we bring your ideas to life with clean, efficient code.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section portfolio">
+            <div class="container">
+                <h2 class="section-title">Our Portfolio</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="portfolio-content">
+                            <h3>Brand Identity Design</h3>
+                            <p>Complete brand package including logo design, color palette, and brand guidelines for CT Global Café.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="portfolio-content">
+                            <h3>Mobile App UI Design</h3>
+                            <p>Modern mobile application interface design with focus on user experience and conversion optimization.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="portfolio-content">
+                            <h3>E-commerce Website</h3>
+                            <p>Full-stack e-commerce solution with custom design, shopping cart functionality, and payment integration.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <i class="fas fa-print"></i>
+                        </div>
+                        <div class="portfolio-content">
+                            <h3>Print Design Collection</h3>
+                            <p>Various print materials including brochures, flyers, and promotional materials with stunning visual impact.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews" class="section reviews">
+            <div class="container">
+                <h2 class="section-title">Client Reviews</h2>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"ZamaniTech transformed our brand identity completely! The graphic designs were exceptional and the website they built exceeded our expectations. Highly professional team."</p>
+                        <div class="reviewer">
+                            <div class="reviewer-avatar">AM</div>
+                  
